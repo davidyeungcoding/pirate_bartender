@@ -16,15 +16,26 @@ ingredients = {
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
 }
 
-def question(y, n, yes, no):
+def ask():
     """Asks user questions to customize a drink"""
+    answers = {}
     for k, v in questions.items():
-        print(v)
+        answer = input(v)
+        if answer == "y" or answer == "yes":
+            answers[k] = True
+        else:
+            answers[k] = False
+    return answers
     
-def custom_drink():
-    """Produces the ingredients for the custom drink"""
-    if questions.key() == True:
-        for k, v in ingredients.item():
-            print(random.choice(ingredients.values()))
-        
+def custom_drink(answers):
+    """Generates a custom drink based off of the users responses"""
+    drink = []
+    for k, v in ingredients.items():
+        if answers[k] == True:
+            drink.append(random.choice(v))
+    return drink        
+
 if __name__ == '__main__':
+    answers = ask()
+    drink = custom_drink(answers)
+    print(drink)
