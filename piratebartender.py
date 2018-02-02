@@ -1,11 +1,11 @@
 import random
 
 questions = {
-    "strong": "Do ye like yer drinks strong?",
-    "salty": "Do ye like it with a salty tang?",
-    "bitter": "Are ye a lubber who likes it bitter?",
-    "sweet": "Would ye like a bit of sweetness with yer poison?",
-    "fruity": "Are ye one for a fruity finish?",
+    "strong": "Do ye like yer drinks strong? ",
+    "salty": "Do ye like it with a salty tang? ",
+    "bitter": "Are ye a lubber who likes it bitter? ",
+    "sweet": "Would ye like a bit of sweetness with yer poison? ",
+    "fruity": "Are ye one for a fruity finish? ",
 }
 
 ingredients = {
@@ -14,6 +14,11 @@ ingredients = {
     "bitter": ["shake of bitters", "splash of tonic", "twist of lemon peel"],
     "sweet": ["sugar cube", "spoonful of honey", "spash of cola"],
     "fruity": ["slice of orange", "dash of cassis", "cherry on top"],
+}
+
+names = {
+    "adjective": ["Slippery", "Wet", "Prickly", "Briny", "Rough", "Callused"],
+    "noun": ["Flipper", "Fin", "Paw", "Palm", "Boot"],
 }
 
 def ask():
@@ -35,7 +40,24 @@ def custom_drink(answers):
             drink.append(random.choice(v))
     return drink        
 
+def name_generator():
+    """Generates random name for drink"""
+    drink_name = []
+    for k, v in names.items():
+        drink_name.append(random.choice(v))
+    return drink_name
+
 if __name__ == '__main__':
-    answers = ask()
-    drink = custom_drink(answers)
-    print(drink)
+    while True:
+        answers = ask()
+        drink = custom_drink(answers)
+        drink_name = name_generator()
+        print(drink_name)
+        print(drink)
+        another = True
+        response = input("Another? ")
+        if response == "y" or response == "yes":
+            another = True
+        else:
+            another = False
+            break
