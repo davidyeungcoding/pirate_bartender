@@ -25,8 +25,8 @@ def ask():
     """Asks user questions to customize a drink"""
     answers = {}
     for k, v in questions.items():
-        answer = input(v)
-        if answer == "y" or answer == "yes":
+        response = input(v)
+        if response == "y" or response == "yes":
             answers[k] = True
         else:
             answers[k] = False
