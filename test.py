@@ -21,54 +21,51 @@ names = {
     "noun": ["Flipper", "Fin", "Paw", "Palm", "Boot"],
 }
 
+customer = {
+    "David": ["slug of whisky", "salt-dusted rim"]
+}
+
+def ask():
+    """Asks user questions to customize a drink"""
+    answers = {}
+    for style, question in questions.items():
+        response = input(question)
+        if response == "y" or response == "yes":
+            answers[style] = True
+        else:
+            answers[style] = False
+    return answers
+    
+def custom_drink(answers):
+    """Generates a custom drink based off of the users responses"""
+    drink = []
+    for style, options in ingredients.items():
+        if answers[style] == True:
+            drink.append(random.choice(options))
+    return drink        
+
+def name_generator():
+    """Generates random name for drink"""
+    return random.choice(names["adjective"]) + " " + random.choice(names["noun"])
+
 def customer_name():
     """Gets the user's name"""
-    customer = {}
     user = input("Who are you? ")
-    for k, v in customer.items():
-        if user != customer[k]:
-            customer.append(user)
+    for name, preference in customer.items():
+        if user in customer == False:
+            drink = custom_drink(ask())
+            print(name_generator())
+            print(drink)
+            customer[name].append(user)
+        else:
+            print(customer[preference])
     return customer
-
-# def ask():
-#     """Asks user questions to customize a drink"""
-#     answers = {}
-#     for k, v in questions.items():
-#         response = input(v)
-#         if response == "y" or response == "yes":
-#             answers[k] = True
-#         else:
-#             answers[k] = False
-#     return answers
-    
-# def custom_drink(answers):
-#     """Generates a custom drink based off of the users responses"""
-#     drink = []
-#     for k, v in ingredients.items():
-#         if answers[k] == True:
-#             drink.append(random.choice(v))
-#     return drink        
-
-# def name_generator():
-#     """Generates random name for drink"""
-#     drink_name = []
-#     for k, v in names.items():
-#         drink_name.append(str(random.choice(adjective) + " " + random.choice(noun)))
-#     return drink_name
 
 if __name__ == '__main__':
     # while True:
-    customer = customer_name()
-        # answers = ask()
-        # drink = custom_drink(answers)
-        # # drink_name = name_generator()
-        # # print(drink_name)
-        # print(drink)
+        customer_name()
         # another = True
         # response = input("Another? ")
-        # if response == "y" or response == "yes":
-        #     another = True
-        # else:
+        # if response != "y" or response != "yes":
         #     another = False
         #     break
-    print(customer)
